@@ -1,0 +1,31 @@
+# Xcode
+*.xcuserstate
+*.xccheckout
+*.moved-to-trash
+xcuserdata/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# CocoaPods (if you add it later)
+Pods/
+Podfile.lock
+
+# macOS
+.DS_Store
+*.swp
+.AppleDouble
+.LSOverride
+
+# App Store / Archives
+*.xcarchive
+
+# Sensitive
+*.p12
+*.mobileprovision
