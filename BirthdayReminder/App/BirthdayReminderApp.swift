@@ -12,7 +12,7 @@ import SwiftData
 struct BirthdayReminderApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Birthday.self,
+            Reminder.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -26,6 +26,7 @@ struct BirthdayReminderApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .tint(Color.reminderBackground)
         }
         .modelContainer(sharedModelContainer)
     }
