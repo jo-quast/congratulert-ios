@@ -30,14 +30,23 @@ final class Reminder {
     var year: Int?
     var note: String?
     var contactIdentifier: String?
+    var isSynced: Bool
+    var getReminded: Bool
 
+    
+    /// Initializes a new `Reminder` object.
+    /// - Parameters:
+    ///   - isSynced: Defaults to `false` for manually created reminders.
     init(
         name: String,
         type: ReminderType = .birthday,
         day: Int,
         month: Int,
         year: Int? = nil,
-        note: String? = nil
+        note: String? = nil,
+        contactIdentifier: String? = nil,
+        isSynced: Bool = false,
+        getReminded: Bool = true
     ) {
         self.id = UUID()
         self.name = name
@@ -46,9 +55,12 @@ final class Reminder {
         self.month = month
         self.year = year
         self.note = note
+        self.contactIdentifier = contactIdentifier
+        self.isSynced = isSynced
+        self.getReminded = getReminded
     }
 
-    var daysUntilNextReminder: Int {
+    var daysUntilNext: Int {
         let calendar = Calendar.current
         let today = calendar.dateComponents([.month, .day], from: .now)
         let todayMonth = today.month!
@@ -70,12 +82,12 @@ final class Reminder {
                 toDay: 31
             )
             return daysToEndOfYear
-                + daysBetween(
-                    fromMonth: 1,
-                    fromDay: 1,
-                    toMonth: month,
-                    toDay: day
-                ) + 1
+            + daysBetween(
+                fromMonth: 1,
+                fromDay: 1,
+                toMonth: month,
+                toDay: day
+            ) + 1
         }
     }
 

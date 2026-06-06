@@ -20,6 +20,13 @@
 			remoteGlobalIDString = 01C1F3302FC31E3B0086AC77;
 			remoteInfo = BirthdayWidgetExtension;
 		};
+		01C1F3A02FD3E4950086AC77 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01C1F3152FC31DE00086AC77 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01C1F31C2FC31DE00086AC77;
+			remoteInfo = BirthdayReminder;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +49,7 @@
 		01C1F3332FC31E3B0086AC77 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		01C1F3352FC31E3B0086AC77 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		01C1F34C2FC596240086AC77 /* BirthdayWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BirthdayWidgetExtension.entitlements; sourceTree = "<group>"; };
+		01C1F39C2FD3E4950086AC77 /* BirthdayReminderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BirthdayReminderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -79,6 +87,11 @@
 			path = BirthdayWidget;
 			sourceTree = "<group>";
 		};
+		01C1F39D2FD3E4950086AC77 /* BirthdayReminderTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BirthdayReminderTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +111,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01C1F3992FD3E4950086AC77 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -107,6 +127,7 @@
 				01C1F34C2FC596240086AC77 /* BirthdayWidgetExtension.entitlements */,
 				01C1F31F2FC31DE00086AC77 /* BirthdayReminder */,
 				01C1F3372FC31E3C0086AC77 /* BirthdayWidget */,
+				01C1F39D2FD3E4950086AC77 /* BirthdayReminderTests */,
 				01C1F3322FC31E3B0086AC77 /* Frameworks */,
 				01C1F31E2FC31DE00086AC77 /* Products */,
 			);
@@ -117,6 +138,7 @@
 			children = (
 				01C1F31D2FC31DE00086AC77 /* BirthdayReminder.app */,
 				01C1F3312FC31E3B0086AC77 /* BirthdayWidgetExtension.appex */,
+				01C1F39C2FD3E4950086AC77 /* BirthdayReminderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,6 +201,29 @@
 			productReference = 01C1F3312FC31E3B0086AC77 /* BirthdayWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		01C1F39B2FD3E4950086AC77 /* BirthdayReminderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01C1F3A22FD3E4950086AC77 /* Build configuration list for PBXNativeTarget "BirthdayReminderTests" */;
+			buildPhases = (
+				01C1F3982FD3E4950086AC77 /* Sources */,
+				01C1F3992FD3E4950086AC77 /* Frameworks */,
+				01C1F39A2FD3E4950086AC77 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				01C1F3A12FD3E4950086AC77 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				01C1F39D2FD3E4950086AC77 /* BirthdayReminderTests */,
+			);
+			name = BirthdayReminderTests;
+			packageProductDependencies = (
+			);
+			productName = BirthdayReminderTests;
+			productReference = 01C1F39C2FD3E4950086AC77 /* BirthdayReminderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -194,6 +239,10 @@
 					};
 					01C1F3302FC31E3B0086AC77 = {
 						CreatedOnToolsVersion = 26.5;
+					};
+					01C1F39B2FD3E4950086AC77 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 01C1F31C2FC31DE00086AC77;
 					};
 				};
 			};
@@ -213,6 +262,7 @@
 			targets = (
 				01C1F31C2FC31DE00086AC77 /* BirthdayReminder */,
 				01C1F3302FC31E3B0086AC77 /* BirthdayWidgetExtension */,
+				01C1F39B2FD3E4950086AC77 /* BirthdayReminderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -226,6 +276,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		01C1F32F2FC31E3B0086AC77 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		01C1F39A2FD3E4950086AC77 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -249,6 +306,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		01C1F3982FD3E4950086AC77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -256,6 +320,11 @@
 			isa = PBXTargetDependency;
 			target = 01C1F3302FC31E3B0086AC77 /* BirthdayWidgetExtension */;
 			targetProxy = 01C1F3432FC31E3F0086AC77 /* PBXContainerItemProxy */;
+		};
+		01C1F3A12FD3E4950086AC77 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01C1F31C2FC31DE00086AC77 /* BirthdayReminder */;
+			targetProxy = 01C1F3A02FD3E4950086AC77 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -517,6 +586,58 @@
 			};
 			name = Release;
 		};
+		01C1F3A32FD3E4950086AC77 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWLQLN53L2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanquast.BirthdayReminderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BirthdayReminder.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BirthdayReminder";
+				XROS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Debug;
+		};
+		01C1F3A42FD3E4950086AC77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = UWLQLN53L2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MACOSX_DEPLOYMENT_TARGET = 26.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanquast.BirthdayReminderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BirthdayReminder.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BirthdayReminder";
+				XROS_DEPLOYMENT_TARGET = 26.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -543,6 +664,15 @@
 			buildConfigurations = (
 				01C1F3482FC31E3F0086AC77 /* Debug */,
 				01C1F3492FC31E3F0086AC77 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01C1F3A22FD3E4950086AC77 /* Build configuration list for PBXNativeTarget "BirthdayReminderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01C1F3A32FD3E4950086AC77 /* Debug */,
+				01C1F3A42FD3E4950086AC77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

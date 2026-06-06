@@ -1,23 +1,27 @@
-//
-//  BirthdayReminderApp.swift
-//  BirthdayReminder
-//
-//  Created by Jonathan Quast on 24.05.26.
-//
-
 import SwiftUI
 import SwiftData
 
+/// The main entry point for the BirthdayReminder app.
+///
+/// Responsible for bootstrapping the SwiftData stack by configuring
+/// the `ModelContainer` with the app's schema, and injecting it into
+/// the SwiftUI environment for use across all views.
 @main
 struct BirthdayReminderApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Reminder.self,
         ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
+        let modelConfiguration = ModelConfiguration(
+            schema: schema,
+            isStoredInMemoryOnly: false
+        )
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(
+                for: schema,
+                configurations: [modelConfiguration]
+            )
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

@@ -1,52 +1,48 @@
-//
-//  ContentView.swift
-//  BirthdayReminder
-//
-//  Created by Jonathan Quast on 24.05.26.
-//
-
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var birthdays: [Birthday]
+    @Query private var reminders: [Reminder]
+    @State private var contactsViewModel = ContactsViewModel()
 
     var body: some View {
         NavigationSplitView {
             List {
-                ForEach(birthdays) { birthday in
+                ForEach(reminders) { reminder in
                     NavigationLink {
-                        Text(birthday.name)
+                        Text(reminder.name)
                     } label: {
-                        Text(birthday.name)
+                        Text(reminder.name)
                     }
                 }
-                .onDelete(perform: deleteBirthday)
+                .onDelete(perform: deleteReminder)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
-                ToolbarItem {
-                    Button(action: addBirthday) {
-                        Label("Add Birthday", systemImage: "plus")
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: addReminder) {
+                        Label(
+                            String(localized: "add_reminder"),
+                            systemImage: "plus"
+                        )
                     }
                 }
             }
         } detail: {
-            Text("Select a Birthday")
+            Text(String(localized: "select_a_reminder"))
         }
     }
 
-    private func addBirthday() {
+    private func addReminder() {
         withAnimation {
-            let newBirthday = Birthday(name: "", date: Date(), notes: "Test")
-            modelContext.insert(newBirthday)
+            // TODO
         }
     }
 
-    private func deleteBirthday(offsets: IndexSet) {
+    private func deleteReminder(offsets: IndexSet) {
         withAnimation {
             // TODO
         }
@@ -55,5 +51,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: Birthday.self, inMemory: true)
+        .modelContainer(for: Reminder.self, inMemory: true)
 }
