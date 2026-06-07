@@ -1,55 +1,64 @@
-import SwiftData
 import SwiftUI
 
+/// Root view containing the main tab bar navigation.
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var reminders: [Reminder]
-    @State private var contactsViewModel = ContactsViewModel()
+
+    /// Tracks the currently selected tab.
+    @State private var selectedTab: Tab = .home
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(reminders) { reminder in
-                    NavigationLink {
-                        Text(reminder.name)
-                    } label: {
-                        Text(reminder.name)
-                    }
+        TabView(selection: $selectedTab) {
+            HomeView()
+                .tabItem {
+                    Label("Upcoming", systemImage: "calendar.badge.clock")
                 }
-                .onDelete(perform: deleteReminder)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
+                .tag(Tab.home)
+
+            PeopleView()
+                .tabItem {
+                    Label("People", systemImage: "person.2")
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: addReminder) {
-                        Label(
-                            String(localized: "add_reminder"),
-                            systemImage: "plus"
-                        )
-                    }
+                .tag(Tab.people)
+
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
                 }
-            }
-        } detail: {
-            Text(String(localized: "select_a_reminder"))
+                .tag(Tab.settings)
+        }
+        .onAppear {
+            applyTabBarAppearance()
         }
     }
+    
+    private func applyTabBarAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
 
-    private func addReminder() {
-        withAnimation {
-            // TODO
-        }
-    }
+        let item = UITabBarItemAppearance()
 
-    private func deleteReminder(offsets: IndexSet) {
-        withAnimation {
-            // TODO
-        }
+        // Selected state — soft rose
+        item.selected.iconColor = UIColor(Color.appPrimaryDark)
+        item.selected.titleTextAttributes = [
+            .foregroundColor: UIColor(Color.appPrimaryDark)
+        ]
+
+        // Unselected state — muted lavender-grey
+        item.normal.iconColor = UIColor(Color.appPrimary)
+        item.normal.titleTextAttributes = [
+            .foregroundColor: UIColor(Color.appPrimary)
+        ]
+
+        appearance.stackedLayoutAppearance = item
+        appearance.inlineLayoutAppearance = item
+        appearance.compactInlineLayoutAppearance = item
+
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Reminder.self, inMemory: true)
+/// Represents each destination in the main tab bar.
+enum Tab {
+    case home, people, settings
 }

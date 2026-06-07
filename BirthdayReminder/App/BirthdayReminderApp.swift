@@ -30,7 +30,7 @@ struct BirthdayReminderApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .tint(Color.reminderBackground)
+                .tint(Color.appBackground)
         }
         .modelContainer(sharedModelContainer)
     }
