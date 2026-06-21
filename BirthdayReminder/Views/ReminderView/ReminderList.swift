@@ -15,8 +15,12 @@ struct ReminderList: View {
                         ReminderRow(reminder: reminder)
                     }
                     .listRowSeparator(.visible)
+                    .alignmentGuide(.listRowSeparatorLeading) { _ in
+                        ReminderRow.avatarWidth
+                    }
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(Color.clear)
+                    .navigationLinkIndicatorVisibility(.hidden)
                 }
                 .listStyle(.plain)
                 .navigationDestination(for: Reminder.self) { reminder in

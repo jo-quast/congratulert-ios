@@ -4,18 +4,26 @@ import SwiftUI
 struct ReminderRow: View {
 
     let reminder: Reminder
+    
+    static let horizontalPadding: CGFloat = 16
+    static let verticalPadding: CGFloat = 16
+    static let hStackSpacing: CGFloat = 12
+    static let avatarDiameter: CGFloat = 48
 
     // MARK: - Body
 
     var body: some View {
-        HStack(spacing: 12) {
+        HStack(spacing: Self.hStackSpacing) {
             avatar
             details
             Spacer()
             countdown
+            Image(systemName: "chevron.right")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(Color(.systemGray3))
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 16)
+        .padding(.horizontal, Self.horizontalPadding)
+        .padding(.vertical, Self.verticalPadding)
     }
 
     // MARK: - Subviews
@@ -24,7 +32,7 @@ struct ReminderRow: View {
     private var avatar: some View {
         Text(reminder.type.icon)
             .font(.system(size: 24, weight: .medium))
-            .frame(width: 48, height: 48)
+            .frame(width: Self.avatarDiameter, height: Self.avatarDiameter)
             .background(reminder.type.color.opacity(0.20))
             .clipShape(Circle())
     }
@@ -35,6 +43,9 @@ struct ReminderRow: View {
             Text(reminder.name)
                 .font(.subheadline.weight(.medium))
             Text(reminder.type.label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            Text(reminder.dateString())
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -49,6 +60,10 @@ struct ReminderRow: View {
             .background(Color.appSecondary.opacity(0.2))
             .foregroundStyle(Color.appSecondary)
             .clipShape(Capsule())
+    }
+    
+    static var avatarWidth: CGFloat {
+        horizontalPadding + avatarDiameter + hStackSpacing
     }
 }
 

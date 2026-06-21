@@ -53,3 +53,15 @@ struct ReminderView: View {
         }
     }
 }
+
+#Preview {
+    let container = try! ModelContainer(
+        for: Reminder.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    for reminder in Reminder.sampleData {
+        container.mainContext.insert(reminder)
+    }
+    return ReminderView()
+        .modelContainer(container)
+}

@@ -53,13 +53,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		017972A02FE77FAC00F24A75 /* Exceptions for "BirthdayReminder" folder in "BirthdayReminderTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Preview Content/Reminder+SampleData.swift",
-			);
-			target = 01C1F39B2FD3E4950086AC77 /* BirthdayReminderTests */;
-		};
 		01C1F3462FC31E3F0086AC77 /* Exceptions for "BirthdayWidget" folder in "BirthdayWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -84,7 +77,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				01C1F3772FD199BC0086AC77 /* Exceptions for "BirthdayReminder" folder in "BirthdayWidgetExtension" target */,
-				017972A02FE77FAC00F24A75 /* Exceptions for "BirthdayReminder" folder in "BirthdayReminderTests" target */,
 			);
 			path = BirthdayReminder;
 			sourceTree = "<group>";

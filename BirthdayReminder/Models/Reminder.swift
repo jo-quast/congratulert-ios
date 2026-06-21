@@ -80,6 +80,41 @@ final class Reminder {
         default:       return "\(days) days"
         }
     }
+    
+    /// Returns a locale-aware formatted date string for this reminder.
+    /// When a year is set, uses medium date style (e.g. "24. Juni 1990" in German, "Jun 24, 1990" in English).
+    /// When no year is set, omits the year (e.g. "24. Juni", "Jun 24").
+    /// - Parameter locale: The locale to use for formatting. Defaults to the device's current locale.
+    func dateString(locale: Locale = .current) -> String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .none
+        formatter.locale = locale
+        
+        var components = DateComponents()
+        components.day = day
+        components.month = month
+        components.year = year ?? Calendar.current.component(.year, from: .now)
+        
+        guard let date = Calendar.current.date(from: components) else {
+            return "\(day).\(month)"
+        }
+        
+        if year != nil {
+            formatter.dateFormat = DateFormatter.dateFormat(
+                fromTemplate: "dMMMyyyy",
+                options: 0,
+                locale: locale
+            )
+        } else {
+            formatter.dateFormat = DateFormatter.dateFormat(
+                fromTemplate: "dMMM",
+                options: 0,
+                locale: locale
+            )
+        }
+        
+        return formatter.string(from: date)
+    }
 
     private func daysBetween(
         fromMonth: Int,
