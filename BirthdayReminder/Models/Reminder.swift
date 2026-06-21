@@ -40,6 +40,16 @@ final class Reminder {
         self.isSynced = isSynced
         self.getReminded = getReminded
     }
+    
+    /// Returns a `Date` representing this reminder's event, or `nil` if no year was recorded.
+    var reminderDate: Date? {
+        guard let year else { return nil }
+        var components = DateComponents()
+        components.day = day
+        components.month = month
+        components.year = year
+        return Calendar.current.date(from: components)
+    }
 
     var daysUntilNext: Int {
         let calendar = Calendar.current
@@ -81,39 +91,46 @@ final class Reminder {
         }
     }
     
+    /// Returns the number of years since the event occurred, or `nil` if no year was recorded.
+    func yearsSince() -> Int? {
+        guard let reminderDate else { return nil }
+        return Calendar.current.dateComponents([.year], from: reminderDate, to: .now).year
+    }
+    
     /// Returns a locale-aware formatted date string for this reminder.
     /// When a year is set, uses medium date style (e.g. "24. Juni 1990" in German, "Jun 24, 1990" in English).
     /// When no year is set, omits the year (e.g. "24. Juni", "Jun 24").
     /// - Parameter locale: The locale to use for formatting. Defaults to the device's current locale.
     func dateString(locale: Locale = .current) -> String {
+        let calendar = Calendar.current
         let formatter = DateFormatter()
         formatter.timeStyle = .none
         formatter.locale = locale
-        
-        var components = DateComponents()
-        components.day = day
-        components.month = month
-        components.year = year ?? Calendar.current.component(.year, from: .now)
-        
-        guard let date = Calendar.current.date(from: components) else {
-            return "\(day).\(month)"
-        }
-        
-        if year != nil {
+
+        if let reminderDate {
             formatter.dateFormat = DateFormatter.dateFormat(
                 fromTemplate: "dMMMyyyy",
                 options: 0,
                 locale: locale
             )
+            return formatter.string(from: reminderDate)
         } else {
+            var components = DateComponents()
+            components.day = day
+            components.month = month
+            components.year = calendar.component(.year, from: .now)
+
+            guard let fallbackDate = calendar.date(from: components) else {
+                return "\(day).\(month)"
+            }
+
             formatter.dateFormat = DateFormatter.dateFormat(
                 fromTemplate: "dMMM",
                 options: 0,
                 locale: locale
             )
+            return formatter.string(from: fallbackDate)
         }
-        
-        return formatter.string(from: date)
     }
 
     private func daysBetween(

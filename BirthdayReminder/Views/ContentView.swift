@@ -62,3 +62,7 @@ struct ContentView: View {
 enum Tab {
     case home, people, settings
 }
+
+#Preview {
+    ContentView()
+}

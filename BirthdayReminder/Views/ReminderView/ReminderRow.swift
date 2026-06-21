@@ -37,15 +37,12 @@ struct ReminderRow: View {
             .clipShape(Circle())
     }
 
-    /// Name and event type label.
+    /// Core reminder information
     private var details: some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(reminder.name)
                 .font(.subheadline.weight(.medium))
-            Text(reminder.type.label)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            Text(reminder.dateString())
+            Text(reminder.dateString() + (reminder.yearsSince().map { " · \($0) years" } ?? ""))
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
