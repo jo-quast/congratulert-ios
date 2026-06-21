@@ -1,25 +1,6 @@
 import Foundation
 import SwiftData
 
-enum ReminderType: String, Codable, CaseIterable {
-    case birthday
-    case anniversary
-
-    var label: String {
-        switch self {
-        case .birthday: return String(localized: "type_birthday")
-        case .anniversary: return String(localized: "type_anniversary")
-        }
-    }
-
-    var icon: String {
-        switch self {
-        case .birthday: return "🎂"
-        case .anniversary: return "💍"
-        }
-    }
-}
-
 @Model
 final class Reminder {
     var id: UUID
@@ -88,6 +69,15 @@ final class Reminder {
                 toMonth: month,
                 toDay: day
             ) + 1
+        }
+    }
+    
+    var daysUntilNextLabel: String {
+        let days = daysUntilNext
+        switch days {
+        case 0:        return "Today 🎉"
+        case 1:        return "Tomorrow"
+        default:       return "\(days) days"
         }
     }
 

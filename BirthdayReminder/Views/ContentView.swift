@@ -8,9 +8,9 @@ struct ContentView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
+            ReminderView()
                 .tabItem {
-                    Label("Upcoming", systemImage: "calendar.badge.clock")
+                    Label("Reminders", systemImage: "calendar.badge.clock")
                 }
                 .tag(Tab.home)
 
