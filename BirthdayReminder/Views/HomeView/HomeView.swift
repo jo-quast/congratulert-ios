@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 /// Displays all upcoming reminders sorted by proximity to today.
-struct ReminderView: View {
+struct HomeView: View {
 
     // MARK: - Query
 
@@ -62,6 +62,6 @@ struct ReminderView: View {
     for reminder in Reminder.sampleData {
         container.mainContext.insert(reminder)
     }
-    return ReminderView()
+    return HomeView()
         .modelContainer(container)
 }
