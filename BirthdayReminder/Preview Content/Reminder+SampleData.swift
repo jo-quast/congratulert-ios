@@ -18,7 +18,7 @@ extension Reminder {
         ),
         Reminder(
             name: "Grandpa Joe died",
-            type: .deathDay,
+            type: .remembrance,
             day: 3,
             month: 11
         ),

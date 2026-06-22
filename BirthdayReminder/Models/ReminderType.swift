@@ -8,7 +8,7 @@ enum ReminderType: String, CaseIterable, Codable {
     case relationshipAnniversary
     case weddingDay
     case friendshipAnniversary
-    case deathDay
+    case remembrance
     case adoptionDay
     case jobAnnieversary
     case immigrationDay
@@ -28,7 +28,7 @@ enum ReminderType: String, CaseIterable, Codable {
         case .friendshipAnniversary: return String(
             localized: "type_friend_anniversary"
         )
-        case .deathDay: return String(localized: "type_death_day")
+        case .remembrance: return String(localized: "type_remembrance")
         case .adoptionDay: return String(localized: "type_adoption_day")
         case .jobAnnieversary: return String(localized: "type_job_anniversary")
         case .immigrationDay: return String(localized: "type_immigration_day")
@@ -45,7 +45,7 @@ enum ReminderType: String, CaseIterable, Codable {
         case .relationshipAnniversary: return "❤️"
         case .weddingDay: return "💍"
         case .friendshipAnniversary: return "🩷"
-        case .deathDay: return "🕊️"
+        case .remembrance: return "🕊️"
         case .adoptionDay: return "🏠"
         case .jobAnnieversary: return "💼"
         case .immigrationDay: return "🌍"
@@ -92,7 +92,7 @@ enum ReminderType: String, CaseIterable, Codable {
                 green: 0.45,
                 blue: 0.67
             ) // Hot Pink
-        case .deathDay:
+        case .remembrance:
             return Color(
                 red: 0.40,
                 green: 0.51,
@@ -131,6 +131,7 @@ enum ReminderType: String, CaseIterable, Codable {
         }
     }
     
+    // TODO: Setup all cases
     func getDefaultReminderName(for contactName: String) -> String {
         switch self {
         case .birthday: return String(localized: "\(contactName)'s Birthday")
@@ -143,7 +144,7 @@ enum ReminderType: String, CaseIterable, Codable {
         )
         case .weddingDay: return "💍"
         case .friendshipAnniversary: return "🩷"
-        case .deathDay: return "🕊️"
+        case .remembrance: return "🕊️"
         case .adoptionDay: return "🏠"
         case .jobAnnieversary: return "💼"
         case .immigrationDay: return "🌍"

@@ -372,23 +372,6 @@
         }
       }
     },
-    "type_death_day" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Todestag"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Death Day"
-          }
-        }
-      }
-    },
     "type_friend_anniversary" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -522,6 +505,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anniversary"
+          }
+        }
+      }
+    },
+    "type_remembrance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gedenktag"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remembrance"
           }
         }
       }
