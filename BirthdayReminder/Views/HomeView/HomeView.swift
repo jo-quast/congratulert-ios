@@ -4,6 +4,10 @@ import SwiftData
 /// Displays all upcoming reminders sorted by proximity to today.
 struct HomeView: View {
 
+    // MARK: - Environment
+    
+    @Environment(\.modelContext) private var modelContext
+    
     // MARK: - Query
 
     /// All reminders fetched from the SwiftData store, sorted by next occurrence date.
@@ -22,7 +26,7 @@ struct HomeView: View {
 
     var body: some View {
         NavigationStack {
-            ReminderList(reminders: filteredReminders)
+            ReminderList(reminders: filteredReminders, onDelete: deleteReminder)
                 .navigationTitle("Upcoming")
                 .navigationBarTitleDisplayMode(.large)
                 .searchable(text: $searchText, prompt: "Search Reminders")
@@ -42,8 +46,15 @@ struct HomeView: View {
                 }
         }
     }
+    
+    // MARK: - Intents
 
-    // MARK: - Subviews
+    /// Removes a reminder from the SwiftData store.
+    private func deleteReminder(_ reminder: Reminder) {
+        modelContext.delete(reminder)
+    }
+
+    // MARK: - Helpers
     
     /// Reminders filtered by the current search query.
     private var filteredReminders: [Reminder] {

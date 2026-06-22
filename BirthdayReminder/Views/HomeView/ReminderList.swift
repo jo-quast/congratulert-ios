@@ -4,6 +4,7 @@ import SwiftUI
 struct ReminderList: View {
     
     let reminders: [Reminder]
+    let onDelete: (Reminder) -> Void
     
     var body: some View {
         Group {
@@ -14,6 +15,13 @@ struct ReminderList: View {
                     NavigationLink(value: reminder) {
                         ReminderRow(reminder: reminder)
                     }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                            Button(role: .destructive) {
+                                                onDelete(reminder)
+                                            } label: {
+                                                Label("Delete", systemImage: "trash")
+                                            }
+                                        }
                     .listRowSeparator(.visible)
                     .alignmentGuide(.listRowSeparatorLeading) { _ in
                         ReminderRow.avatarWidth
@@ -42,6 +50,6 @@ struct ReminderList: View {
 
 #Preview {
     NavigationStack {
-        ReminderList(reminders: Reminder.sampleData)
+        ReminderList(reminders: Reminder.sampleData, onDelete: { _ in })
     }
 }
