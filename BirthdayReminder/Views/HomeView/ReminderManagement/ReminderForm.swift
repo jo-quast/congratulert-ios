@@ -4,6 +4,9 @@ import Contacts
 
 /// Form to edit a ``Reminder``.
 struct ReminderForm: View {
+    
+    // MARK: - Binding
+    
     @Binding var name: String
     @Binding var selectedType: ReminderType
     @Binding var selectedDay: Int
@@ -13,12 +16,16 @@ struct ReminderForm: View {
     @Binding var note: String?
     @Binding var showContactPicker: Bool
     
+    // MARK: - State (add to ReminderForm)
+
+    @State private var isDatePickerExpanded = false
+    
     // MARK: - Helper Functions
     
     /// Display string for the optional contact button.
     private var contactButtonLabel: String {
-        guard let c = associatedContact else { return "Choose Contact" }
-        return [c.givenName, c.familyName]
+        guard let contact = associatedContact else { return "Choose Contact" }
+        return [contact.givenName, contact.familyName]
             .filter { !$0.isEmpty }
             .joined(separator: " ")
     }
@@ -143,14 +150,14 @@ struct ReminderForm: View {
                             associatedContact = nil
                         } label: {
                             Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(.secondary)
+                                .foregroundStyle(.primary)
                         }
                         .buttonStyle(.plain)
                     }
                 }
             }
             .foregroundStyle(
-                associatedContact == nil ? Color.appAccent : .primary
+                associatedContact == nil ? Color.appPrimary : .primary
             )
         }
     }
@@ -165,5 +172,32 @@ struct ReminderForm: View {
                 .lineLimit(4...8)
                 .autocorrectionDisabled()
             }
+    }
+}
+
+#Preview {
+    @Previewable @State var name = "Paul's Birthday"
+    @Previewable @State var type = ReminderType.birthday
+    @Previewable @State var day = 15
+    @Previewable @State var month = 6
+    @Previewable @State var year: Int? = 1990
+    @Previewable @State var contact: CNContact? = nil
+    @Previewable @State var note: String? = "This is a preview"
+    @Previewable @State var showContactPicker = false
+
+    NavigationStack {
+        Form {
+            ReminderForm(
+                name: $name,
+                selectedType: $type,
+                selectedDay: $day,
+                selectedMonth: $month,
+                selectedYear: $year,
+                associatedContact: $contact,
+                note: $note,
+                showContactPicker: $showContactPicker
+            )
+        }
+        .navigationTitle("Preview")
     }
 }
