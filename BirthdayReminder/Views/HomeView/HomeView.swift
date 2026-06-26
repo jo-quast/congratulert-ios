@@ -15,6 +15,12 @@ struct HomeView: View {
     private var reminders: [Reminder]
 
     // MARK: - State
+    
+    /// Controls presentation of the add-options confirmation dialog.
+    @State private var showingAddOptions = false
+
+    /// Controls presentation of the contacts import sheet.
+    @State private var showingContactsImport = false
 
     /// Controls presentation of the add reminder sheet.
     @State private var showingAddReminder = false
@@ -33,16 +39,32 @@ struct HomeView: View {
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
                         Button {
-                            showingAddReminder = true
+                            showingAddOptions = true
                         } label: {
                             Image(systemName: "plus")
                                 .fontWeight(.semibold)
                                 .foregroundStyle(Color.appPrimaryDark)
                         }
-                        .sheet(isPresented: $showingAddReminder) {
-                            AddReminderView()
-                        }
                     }
+                }
+                .confirmationDialog(
+                    "Add Reminder",
+                    isPresented: $showingAddOptions
+                ) {
+                    Button("New Reminder") {
+                        showingAddReminder = true
+                    }
+                    Button("Import from Contacts") {
+                        showingContactsImport = true
+                    }
+                } message: {
+                    Text("How would you like to add a reminder?")
+                }
+                .sheet(isPresented: $showingAddReminder) {
+                    AddReminderView()
+                }
+                .sheet(isPresented: $showingContactsImport) {
+                    ImportFromContactsView()
                 }
         }
     }

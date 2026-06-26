@@ -1,3 +1,4 @@
+#if DEBUG
 import Foundation
 
 extension Reminder {
@@ -45,3 +46,4 @@ extension Reminder {
         )
     ]
 }
+#endif
