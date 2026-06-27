@@ -7,6 +7,7 @@ protocol ContactStoreProtocol {
         with fetchRequest: CNContactFetchRequest,
         usingBlock block: (CNContact, UnsafeMutablePointer<ObjCBool>) -> Void
     ) throws
+    func requestAccess(for entityType: CNEntityType) async throws -> Bool
 }
 
 extension CNContactStore: ContactStoreProtocol {}
@@ -24,7 +25,6 @@ final class ContactsService {
     /// Requests access to the user's contacts.
     /// - returns: `true` if access was granted, `false` otherwise.
     func requestAccess() async -> Bool {
-        let store = CNContactStore()
         let status = CNContactStore.authorizationStatus(for: .contacts)
 
         switch status {
